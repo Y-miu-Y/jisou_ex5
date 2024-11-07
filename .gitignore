@@ -29,3 +29,4 @@ dist-ssr
 .env.*
 *.tsbuildinfo
 .firebase/*
+.vscode
