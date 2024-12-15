@@ -1,26 +1,26 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { CGHeader } from "../components/CGHeader";
-import { Box, Button, Center, Container, Fade, FormControl, FormErrorMessage, FormHelperText, Heading, Input, Radio, RadioGroup, Text, useRadio, VStack } from "@chakra-ui/react";
+import { Box, Button, Center, Container, Fade, FormControl, FormErrorMessage, FormHelperText, Heading, Input, Radio, RadioGroup, Text, VStack } from "@chakra-ui/react";
 import { SeparateBar } from "../components/SeparateBar";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRegistCharaGit } from "../hooks/useRegistCharaGit";
 
 type Form = {
   chara_name: string;
-  charactor: string;
+  character: string;
 }
 
 export const SettingCharaGit = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { register, handleSubmit, formState: { errors } } = useForm<Form>();
-  const { registDB } = useRegistCharaGit();
+  const { upsertDB } = useRegistCharaGit();
 
   const onSubmit: SubmitHandler<Form> = (data) => {
-    registDB({
+    upsertDB({
       git_id: id ?? "",
       name: data.chara_name,
-      charactor: data.charactor
+      character: data.character
     })
     .then(() => {
       navigate("/" + id);
@@ -72,7 +72,7 @@ export const SettingCharaGit = () => {
                       あなたのキャラの性格を選んでください<br />
                       キャラは性格に応じてあなたにコメントをくれます
                     </FormHelperText>
-                    <RadioGroup defaultValue="cool" id="chara">
+                    <RadioGroup defaultValue="cool" id="character">
                       <VStack w='100%'>
                         <Radio value="cool">かっこいい系</Radio>
                         <Radio value="cute">かわいい系</Radio>

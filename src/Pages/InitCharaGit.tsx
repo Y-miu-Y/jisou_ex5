@@ -3,7 +3,7 @@ import { CGHeader } from "../components/CGHeader"
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { checkUserExists } from "../utils/urlUtils";
-import { isExistGitId } from "../services/CharaGItService";
+import { isExistDBGitId } from "../services/CharaGItService";
 import { SeparateBar } from "../components/SeparateBar";
 
 type Form = {
@@ -16,7 +16,7 @@ export const InitCharaGit = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<Form>();
 
   const onSubmit: SubmitHandler<Form> = (data) => {
-    isExistGitId(data.github_id)
+    isExistDBGitId(data.github_id)
     .then(res => {
       if(res){
         navigate(data.github_id);
