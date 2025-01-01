@@ -14,7 +14,7 @@
     "@chakra-ui/react": "^2.10.2",
     "@google/generative-ai": "^0.21.0",
     "@supabase/supabase-js": "^2.45.6",
-    "axios": "^1.7.7",
+    "axios": "^1.7.9",
     "chakra": "^0.0.3",
     "dotenv": "^16.4.5",
     "firebase": "^10.14.1",
