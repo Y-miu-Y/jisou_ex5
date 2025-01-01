@@ -1,10 +1,10 @@
 import { Box, Button, Card, CardBody, CardHeader, Container, FormControl, FormErrorMessage, FormLabel, Heading, Input, Spacer, Text } from "@chakra-ui/react"
-import { CGHeader } from "../components/CGHeader"
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { checkUserExists } from "../utils/urlUtils";
 import { isExistDBGitId } from "../services/CharaGItService";
 import { SeparateBar } from "../components/SeparateBar";
+import { CGTopHeader } from "../components/CGTopHeader";
 
 type Form = {
   github_id: string;
@@ -30,7 +30,7 @@ export const InitCharaGit = () => {
 
   return (
     <>
-      <CGHeader />
+      <CGTopHeader />
       <Container maxW="4xl">
         <Heading as="h2" fontSize="3xl">Gitキャラ育成ゲーム</Heading>
         <SeparateBar>概要</SeparateBar>

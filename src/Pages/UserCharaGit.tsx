@@ -8,18 +8,18 @@ import { Loading } from "../components/Loading";
 export const UserCharaGit = () => {
   const { id } = useParams();
 
-  const { charaGit, getCharaGit, isLoading, comment, setComment } = useCharaGit();
+  const { charaGit, isLoading, comment, init } = useCharaGit();
 
   useEffect(()=> {
-    if(id) getCharaGit(id);
-  }, [getCharaGit, id]);
+    init(id ?? "");
+  }, [id]);
 
   if(isLoading){
     return (<Loading />);
   } else {
     return (
       <>
-        <CGHeader></CGHeader>
+        <CGHeader id={id ?? ""}></CGHeader>
         <Fade in={true}>
           <Container maxW="4xl">
             <Heading as="h2" fontSize="3xl"></Heading>
@@ -29,7 +29,7 @@ export const UserCharaGit = () => {
                   <VStack>
                     <Box w='70%' justifyContent='center'>
                       <Box border="1px" minH="40px" textAlign="center">
-                        <p>{comment}こんにちは</p>
+                        <p>{comment}</p>
                       </Box>
                     </Box>
                     <Box w='50%' justifyContent='center'>

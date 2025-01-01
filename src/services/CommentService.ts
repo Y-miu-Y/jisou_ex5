@@ -1,12 +1,8 @@
 import { generateGemini } from "./GeminiService";
 import { CharaPrompt } from "./prompts/CharaPrompt";
 
-export type BymePersonality = {
-  personality: "cute" | "cool" | "poor" | "philosophy";
-}
-
 type BymeRequest = {
-  personality: BymePersonality;
+  personality: string;
   power: number;
 }
 
@@ -15,7 +11,7 @@ export const generateBymeComment = (input: BymeRequest): Promise<string> => {
 
   return generateGemini(CharaPrompt + requestJson)
   .then(response => {
-    const comment = JSON.parse(response).comment;
+    const comment = response;
     return (comment as string);
   })
   .catch(error => {

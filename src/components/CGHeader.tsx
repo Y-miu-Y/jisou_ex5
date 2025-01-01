@@ -1,7 +1,8 @@
 import { Box, Container, Heading, HStack } from '@chakra-ui/react';
+import { Link } from "react-router-dom"
 import React from 'react';
 
-export const CGHeader: React.FC = () => {
+export const CGHeader = ({id}:{id: string}) => {
 
   return (
     <>
@@ -14,7 +15,15 @@ export const CGHeader: React.FC = () => {
             </Box>
 
             <Box>
-              a
+              <Link to="/">
+                トップに戻る
+              </Link>
+            </Box>
+
+            <Box>
+              <Link to={`/${id}/setting`}>
+                設定画面へ
+              </Link>
             </Box>
 
           </HStack>

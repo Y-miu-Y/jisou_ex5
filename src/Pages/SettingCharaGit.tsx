@@ -31,7 +31,7 @@ export const SettingCharaGit = () => {
 
   return (
     <>
-      <CGHeader />
+      <CGHeader id={id ?? ""}/>
       <Fade in={true}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Container maxW="4xl">
