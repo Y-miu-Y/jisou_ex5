@@ -1,4 +1,4 @@
-import { supabase } from "./supabase";
+import { supabase } from "./supabase.js";
 
 const chara_git = 'chara_git';
 const selectString = 'id, github_id, name, character, status';
@@ -69,3 +69,29 @@ export const isExistDBGitId = async (git_id: string): Promise<boolean> => {
     return false;
   }
 }
+
+export const selectAllGitId = async (): Promise<CharaGit[]> => {
+  try{
+    const { data } = await supabase
+    .from(chara_git)
+    .select(selectString);
+
+    const result: CharaGit[] = data ?? [];
+
+    return result;
+
+  }catch(e){
+    console.error(e);
+    return [];
+  }
+}
+
+export const updateCharaGitStatus = async (props: {id:string, status:number}) => {
+  const { data, error } = await supabase
+  .from(chara_git)
+  .update({
+    status: props.status
+  })
+  .eq("id", props.id);
+  return { data, error }
+};

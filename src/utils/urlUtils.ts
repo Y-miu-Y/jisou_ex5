@@ -24,6 +24,7 @@ export const checkUserExists = (username: string) => {
 export const contributionsURL = (user: string): string => {
   return (`https://github.com/users/${user}/contributions`);
 }
+
 export const githubURL = (user: string): string => {
   return (`${GITHUB_URL}/${user}`);
 }
