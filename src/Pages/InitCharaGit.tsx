@@ -32,7 +32,7 @@ export const InitCharaGit = () => {
     <>
       <CGTopHeader />
       <Container maxW="4xl">
-        <Heading as="h2" fontSize="3xl">Gitキャラ育成ゲーム</Heading>
+        <Heading as="h2" fontSize="3xl" data-testid="title">Gitキャラ育成ゲーム</Heading>
         <SeparateBar>概要</SeparateBar>
         <Box>
           <Text textAlign="center">

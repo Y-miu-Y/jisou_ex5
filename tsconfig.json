@@ -5,7 +5,9 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "module": "ESNext", // または "ES6"
+    "module": "ESNext", // または "ES6",
+    "target": "es2021",
+    "lib": ["es2021", "dom"],
     "moduleResolution": "node",
     "esModuleInterop": true
   }

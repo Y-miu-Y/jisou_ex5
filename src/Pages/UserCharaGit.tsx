@@ -45,14 +45,6 @@ export const UserCharaGit = () => {
                 </Box>  
               </Center>
             </Box>
-            <Box>
-              デバッグ用<br/>
-              {charaGit?.id}<br/>
-              {charaGit?.github_id}<br/>
-              {charaGit?.name}<br/>
-              {charaGit?.status}<br/>
-              {charaGit?.character}<br/>
-            </Box>
           </Container>
         </Fade>
       </>
