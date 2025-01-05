@@ -1,6 +1,6 @@
 import { Box, Container, HStack, Heading } from "@chakra-ui/react";
 
-export const CGTopHeader: React.FC = () => {
+export const CGTopHeader = () => {
 
   return (
     <>
