@@ -1,4 +1,4 @@
-import { supabase } from "./supabase.js";
+import { supabase } from "./supabase";
 
 const chara_git = 'chara_git';
 const selectString = 'id, github_id, name, character, status';
