@@ -53,11 +53,12 @@ export const SettingCharaGit = () => {
                   <VStack w='100%'>
                     <FormHelperText>あなたのキャラの名前を入力してください。</FormHelperText>
                     <Input type='text' w='50%' borderColor='black' textAlign='center'
+                      data-testid="input"
                       id="chara_name"
                       {...register('chara_name', {
                         required : '入力されていません。'
                         })}></Input>
-                    <FormErrorMessage>
+                    <FormErrorMessage data-testid="errormsg">
                       {errors.chara_name && errors.chara_name.message}
                     </FormErrorMessage>
                   </VStack>

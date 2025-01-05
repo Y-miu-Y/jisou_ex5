@@ -51,18 +51,19 @@ export const InitCharaGit = () => {
                 <FormControl isInvalid={!!errors.github_id}>
                   <FormLabel htmlFor="github_id">GithubID</FormLabel>
                   <Input id="github_id"
-                  {...register('github_id', {
-                    required : '入力されていません。',
-                    validate : async (id) => {
-                      return await checkUserExists(id) ? true : 'ユーザーが存在しません';
-                    }
-                  })}>
+                    data-testid="input"
+                    {...register('github_id', {
+                      required : '入力されていません。',
+                      validate : async (id) => {
+                        return await checkUserExists(id) ? true : 'ユーザーが存在しません';
+                      }
+                    })}>
                   </Input>
-                  <FormErrorMessage>
+                  <FormErrorMessage data-testid="errormsg">
                     {errors.github_id && errors.github_id.message}
                   </FormErrorMessage>
                 </FormControl>
-                <Button type="submit">送信</Button>
+                <Button type="submit" data-testid="submit">送信</Button>
               </CardBody>
             </Card>
           </form>
