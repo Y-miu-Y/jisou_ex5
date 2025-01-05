@@ -1,6 +1,5 @@
 import { Box, Container, Heading, HStack } from '@chakra-ui/react';
 import { Link } from "react-router-dom"
-import React from 'react';
 
 export const CGHeader = ({id}:{id: string}) => {
 
