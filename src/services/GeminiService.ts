@@ -6,7 +6,6 @@ const GeminiAPI = () => {
 }
 
 export const generateGemini = async (prompt: string): Promise<string> => {
-  console.debug(prompt);
   const result = await GeminiAPI().generateContent(prompt);
   const text = await result.response.text();
   return text;

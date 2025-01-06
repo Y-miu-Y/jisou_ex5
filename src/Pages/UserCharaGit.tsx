@@ -28,12 +28,12 @@ export const UserCharaGit = () => {
                 <Box w='100%'>
                   <VStack>
                     <Box w='70%' justifyContent='center'>
-                      <Box border="1px" minH="40px" textAlign="center">
-                        <p>{comment}</p>
+                      <Box border="1px" minH="40px" textAlign="center" data-testid="commentBox">
+                        <p data-testid="comment">{comment}</p>
                       </Box>
                     </Box>
                     <Box w='50%' justifyContent='center'>
-                      <Image src="src/images/CharaGitMain.png" w="100%"/>
+                      <Image src="src/images/CharaGitMain.png" w="100%" data-testid="charaImg"/>
                     </Box>
                     <Box as="h2" fontSize="40px">
                       {charaGit?.name}
