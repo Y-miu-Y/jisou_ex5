@@ -4,6 +4,8 @@ import { MemoryRouter, useNavigate } from "react-router-dom";
 import userEvent from '@testing-library/user-event';
 import { checkUserExists } from "../utils/urlUtils";
 import { isExistDBGitId } from "../services/CharaGItService";
+import { ChakraProvider } from "@chakra-ui/react";
+import { ReactNode } from "react";
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
@@ -13,61 +15,41 @@ jest.mock("react-router-dom", () => ({
 jest.mock("../services/CharaGItService");
 jest.mock("../utils/urlUtils");
 
+const AllProviders = ({ children }: { children: ReactNode }) => (
+  <ChakraProvider>
+    <MemoryRouter>
+      {children}
+    </MemoryRouter>
+  </ChakraProvider>
+);
+
 describe('UserCharaGitのテスト', () => {
   describe('描画テスト', () => {
     it('タイトルが表示されている', async() => {
-      render(
-        <MemoryRouter>
-          <InitCharaGit />
-        </MemoryRouter>
-        
-      );
-      
+      render(<InitCharaGit />, { wrapper: AllProviders });
       expect(await screen.findByTestId("title")).toHaveTextContent('Gitキャラ育成ゲーム');
     });
   });
 
   describe('機能テスト',() => {
     it('GithubIDの未入力エラーを確認する', async() => {
-      render(
-        <MemoryRouter>
-          <InitCharaGit />
-        </MemoryRouter>
-        
-      );
-
-
+      render(<InitCharaGit />, { wrapper: AllProviders });
       const inputForm = await screen.findByTestId("input");
       expect(inputForm).toHaveValue("");
-
       const submitButton = await screen.findByTestId("submit");
       await userEvent.click(submitButton);
-      
       expect(await screen.findByTestId("errormsg")).toHaveTextContent('入力されていません。');
-
     });
 
     it('GithubIDが存在しないエラーを確認する', async() => {
-
       (checkUserExists as jest.Mock).mockResolvedValue(false);
-
-      render(
-        <MemoryRouter>
-          <InitCharaGit />
-        </MemoryRouter>
-        
-      );
-
-
+      render(<InitCharaGit />, { wrapper: AllProviders });
       const inputForm = await screen.findByTestId("input");
       await userEvent.type(inputForm, "test");
       expect(inputForm).toHaveValue("test");
-
       const submitButton = await screen.findByTestId("submit");
       await userEvent.click(submitButton);
-      
       expect(await screen.findByTestId("errormsg")).toHaveTextContent('ユーザーが存在しません');
-      
     });
     
     it('GithubIDが存在してDB登録済みの場合、localhost:5132/:idに遷移する', async() => {
@@ -75,20 +57,12 @@ describe('UserCharaGitのテスト', () => {
       (useNavigate as jest.Mock).mockReturnValue(mockNav);
       (checkUserExists as jest.Mock).mockResolvedValue(true);
       (isExistDBGitId as jest.Mock).mockResolvedValue(true);
-      
-      render(
-        <MemoryRouter>
-          <InitCharaGit />
-        </MemoryRouter>
-      );
-
+      render(<InitCharaGit />, { wrapper: AllProviders });
       const inputForm = await screen.findByTestId("input");
       await userEvent.type(inputForm, "test");
       expect(inputForm).toHaveValue("test");
-
       const submitButton = await screen.findByTestId("submit");
       await userEvent.click(submitButton);
-      
       expect(mockNav).toHaveBeenCalledWith("test");
     });
 
@@ -97,20 +71,12 @@ describe('UserCharaGitのテスト', () => {
       (useNavigate as jest.Mock).mockReturnValue(mockNav);
       (checkUserExists as jest.Mock).mockResolvedValue(true);
       (isExistDBGitId as jest.Mock).mockResolvedValue(false);
-      
-      render(
-        <MemoryRouter>
-          <InitCharaGit />
-        </MemoryRouter>
-      );
-
+      render(<InitCharaGit />, { wrapper: AllProviders });
       const inputForm = await screen.findByTestId("input");
       await userEvent.type(inputForm, "test");
       expect(inputForm).toHaveValue("test");
-
       const submitButton = await screen.findByTestId("submit");
       await userEvent.click(submitButton);
-      
       expect(mockNav).toHaveBeenCalledWith("test/setting");
     });
   });
