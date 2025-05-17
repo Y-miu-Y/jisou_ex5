@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useCharaGit } from "../hooks/useCharaGit";
 import { Loading } from "../components/Loading";
 import { motion } from "framer-motion";
+import CharaHealthLineComponent from "../components/CharaHealthLineComponent";
 
 export const UserCharaGit = () => {
   const { id } = useParams();
@@ -60,8 +61,8 @@ export const UserCharaGit = () => {
                   <Box as="h2" fontSize="2xl" color={headingColor} fontWeight="bold">
                     {charaGit?.name}
                   </Box>
-                  <Box as="h3" fontSize="lg">
-                    げんき：{charaGit?.status}
+                  <Box as="h3" fontSize="lg" w="80%">
+                    <CharaHealthLineComponent currentValue={charaGit?.status ?? 0} maxValue={100}/>
                   </Box>
                 </VStack>
               </CardBody>
